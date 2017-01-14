@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+  <title>Parallax Template - Materialize</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+  <style>
+  @-ms-viewport { width: 100vw ; min-zoom: 100% ; zoom: 100% ; }  @viewport { width: 100vw ; min-zoom: 100% zoom: 100% ; }
+  @-ms-viewport { user-zoom: fixed ; min-zoom: 100% ; }           @viewport { user-zoom: fixed ; min-zoom: 100% ; }
+
+  /* Alinhamento vertical modais */
+  div#add, div#list {
+    top:0px;
+    max-height:100%;
+  }
+
+  div#btn-close {
+    display: none;
+  }
+
+  div.fixed-action-btn {
+    z-index: 1500;
+  }
+
+  /* Correção tamanho Parallax */
+  div.parallax-container{
+    min-height:215px;
+  }
+
+  td.plus{
+    color: green;
+  }
+
+  td.minus{
+    color: red;
+  }
+
+  a.fixed-action-btn{
+    transition: opacity 1s ease-out;
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+  }
+
+  a.fixed-action-btn.active{
+    opacity: 1;
+    height: 54px;
+  }
+
+
+  </style>
+</head>
+<body>
+
+  <!-- Botões Flutuantes -->
+  <div class="fixed-action-btn" id="btn-close">
+   <button class="btn-floating btn-large waves-effect waves-light red darken-4"><i class="material-icons">close</i></button>
+  </div>
+
+  <div class="fixed-action-btn" id="btn-todos">
+    <a class="btn-floating active btn-large red darken-4 waves-effect waves-light">
+      <i class="large material-icons">menu</i>
+    </a>
+    <ul>
+      <li><a class="btn-floating active yellow darken-4 waves-effect waves-light"><i class="material-icons" id="btn-settings">settings</i></a></li>
+      <li><a class="btn-floating active green darken-4 waves-effect waves-light" id="btn-list"><i class="material-icons">view_list</i></a></li>
+      <li><button class="btn-floating active blue darken-4 waves-effect waves-light" id="btn-add"><i class="material-icons">add</i></button></li>
+    </ul>
+  </div>
+
+  <!-- Parallax Header -->
+  <div id="index-banner" class="parallax-container">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <h1 class="header center teal-text text-lighten-2">Parallax Template</h1>
+      </div>
+    </div>
+    <div class="parallax"><img src="background1.jpg" alt="Unsplashed background img 1"></div>
+  </div>
+
+  <!-- Paragraph -->
+  <div class="container">
+    <div class="section">
+      <div class="row">
+        <div class="col s12">
+          <div class="icon-block">
+            <h2 class="center brown-text"><i class="material-icons">flash_on</i></h2>
+            <h5 class="center">Speeds up development</h5>
+            <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Add -->
+  <div id="add" class="modal bottom-sheet">
+
+    <!-- Parallax Header -->
+    <div id="index-banner" class="parallax-container">
+      <div class="section no-pad-bot">
+        <div class="container">
+          <h1 class="header center teal-text text-lighten-2">Adicionar Pagamentos</h1>
+        </div>
+      </div>
+      <div class="parallax"><img src="background1.jpg" alt="Unsplashed background img 1"></div>
+    </div>
+
+    <div class="modal-content">
+      <div class="container">
+        <div class="section">
+          <div class="row">
+          <form class="col s12">
+            <div class="row">
+              <div class="input-field col s6">
+                <input placeholder="Internet" id="nome" type="text" class="validate">
+                <label for="nome">Nome</label>
+              </div>
+              <div class="input-field col s6">
+                <select id="tipo">
+                  <option value="" disabled selected>Escolha...</option>
+                  <option value="1">Pagamento Único</option>
+                  <option value="2">Pagamento Periódico</option>
+                </select>
+                <label>Tipo de conta</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s6">
+                <input placeholder="100,00" id="valor" type="number" class="validate">
+                <label for="valor">Valor</label>
+              </div>
+              <div class="input-field col s6">
+                <select id="renovacao">
+                  <option value="" disabled selected>Escolha...</option>
+                  <option value="1">Diário</option>
+                  <option value="2">Semanal</option>
+                  <option value="3">Mensal</option>
+                  <option value="4">Anual</option>
+                </select>
+                <label>Período de Renovação</label>
+              </div>
+            </div>
+          </form>
+          <a class="btn waves-effect modal-close waves-light" id="btn-cadastrar">Adicionar
+            <i class="material-icons right">add</i>
+          </a>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal List -->
+  <div id="list" class="modal bottom-sheet">
+
+    <!-- Parallax Header -->
+    <div id="index-banner" class="parallax-container">
+      <div class="section no-pad-bot">
+        <div class="container">
+          <h1 class="header center teal-text text-lighten-2">Lista de Pagamentos</h1>
+        </div>
+      </div>
+      <div class="parallax"><img src="background1.jpg" alt="Unsplashed background img 1"></div>
+    </div>
+
+    <div class="modal-content">
+      <div class="container">
+        <div class="section">
+          <table id="tabela">
+              <tr style="border-bottom: 1px solid #d0d0d0">
+                <th data-field="nome">Nome</th>
+                <th data-field="name">Tipo</th>
+                <th data-field="price">Valor</th>
+              </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+
+  <!--  Inicializações-->
+  <script>
+
+    document.getElementById("btn-close").onclick = function() {close()};
+    document.getElementById("btn-add").onclick = function() {addOpen()};
+    document.getElementById("btn-list").onclick = function() {listOpen()};
+    document.getElementById("btn-settings").onclick = function() {settingsOpen()};
+    document.getElementById("btn-cadastrar").onclick = function() {add()};
+
+    $(document).ready(function(){
+      //localStorage.clear();
+      $('select').material_select();
+      $('.tooltipped').tooltip({delay: 50});
+      $('.collapsible').collapsible();
+      $('.modal').modal({
+      dismissible: false,
+      in_duration: 160,
+      out_duration: 120,
+      ready: function(modal, trigger) {
+        $("#btn-todos").css("display", "none");
+        $("#btn-close").css("display", "inline");
+        console.log(modal, trigger);
+      },
+      complete: function() {
+        $("#btn-close").css("display", "none");
+        $("#btn-todos").css("display", "inline");
+       }
+     });
+
+     if (localStorage.getItem('nome')=="[]" || localStorage.getItem('tipo')=="[]" || localStorage.getItem('valor')=="[]" || localStorage.getItem('nome')==null || localStorage.getItem('tipo')==null || localStorage.getItem('valor')==null){
+     } else {
+       var nome = JSON.parse(localStorage.getItem('nome'));
+       var tipo = JSON.parse(localStorage.getItem('tipo'));
+       var valor = JSON.parse(localStorage.getItem('valor'));
+
+       var table = document.getElementById("tabela");
+       for (i = 0; i < nome.length; i++) {
+         var row = table.insertRow(1);
+         var cell1 = row.insertCell(0);
+         var cell2 = row.insertCell(1);
+         var cell3 = row.insertCell(2);
+         cell1.innerHTML = nome[i];
+         if (tipo[i] == '1') {
+          cell2.innerHTML = "Pg. Único";
+         } else {
+          cell2.innerHTML = "Pg. Periódico";
+         }
+         rvalor = parseFloat(valor[i]);
+         rvalor = rvalor.toFixed(2);
+         cell3.innerHTML = "R$" + rvalor.replace(".", ",").replace("-","");
+         if (valor < 0) {
+           cell3.className = "minus";
+         } else {
+           cell3.className = "plus";
+         }
+       }
+     }
+    });
+
+    function close(){
+      $('#add').modal('close');
+      $('#list').modal('close');
+    }
+
+    function add(){
+      var nome = document.getElementById("nome").value;
+      var valor = document.getElementById("valor").value;
+      var tipo = document.getElementById("tipo").value;
+
+      if (nome == ''){
+        Materialize.toast('Preencha o campo Nome!', 5000);
+      } else {
+        if (valor == ''){
+          Materialize.toast('Preencha o campo Valor!', 5000);
+        } else {
+          if (tipo == ''){
+            Materialize.toast('Preencha o campo Tipo!', 5000);
+          } else {
+            var table = document.getElementById("tabela");
+            var row = table.insertRow(1);
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            var cell3 = row.insertCell(2);
+            valor = parseFloat(valor);
+            valor = valor.toFixed(2);
+            cell1.innerHTML = nome;
+            if (tipo == '1') {
+             cell2.innerHTML = "Pg. Único";
+            } else {
+             cell2.innerHTML = "Pg. Periódico";
+            }
+            cell3.innerHTML = "R$" + valor.replace(".", ",").replace("-","");
+            if (valor < 0) {
+              cell3.className = "minus";
+            } else {
+              cell3.className = "plus";
+            }
+
+            var vnome = JSON.parse(localStorage.getItem('nome'));
+            if (localStorage.getItem('nome')==null)
+              var vnome = [];
+            vnome.push(nome);
+            localStorage.setItem('nome', JSON.stringify(vnome));
+
+            var vtipo = JSON.parse(localStorage.getItem('tipo'));
+            if (localStorage.getItem('tipo')==null)
+              var vtipo = [];
+            vtipo.push(tipo);
+            localStorage.setItem('tipo', JSON.stringify(vtipo));
+
+            var vvalor = JSON.parse(localStorage.getItem('valor'));
+            if (localStorage.getItem('valor')==null)
+              var vvalor = [];
+            vvalor.push(valor);
+            localStorage.setItem('valor', JSON.stringify(vvalor));
+          }
+        }
+      }
+    }
+
+    function addOpen(){
+      $('.fixed-action-btn').closeFAB();
+      $('#add').modal('open');
+    }
+
+    function listOpen(){
+      $('.fixed-action-btn').closeFAB();
+      $('#list').modal('open');
+    }
+
+  </script>
+
+  <!-- Uncomment the following scripts if you convert your "Standard HTML5" project into a "Cordova" project. -->
+<!-- <script src="cordova.js"></script> -->          <!-- phantom library, needed for Cordova api calls, added during build -->
+<!-- <script src="js/app.js"></script> -->           <!-- recommended location of your JavaScript code relative to other JS files -->
+<!-- <script src="xdk/init-dev.js"></script> -->     <!-- normalizes device and document ready events, see README for details -->
+
+  </body>
+</html>
